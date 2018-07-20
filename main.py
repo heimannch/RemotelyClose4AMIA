@@ -8,7 +8,7 @@
 
 def get_trigger(risk, score):
 
-    #low-risk
+    #low-touch
     if (risk == 1):
         if (score<20):
             return ("No notification")
@@ -18,7 +18,8 @@ def get_trigger(risk, score):
             return ("Notification for the family and for the doctor, in the Remotely Close portal")
         else:
             return ("Notification for the family and for the doctor, in the EHR portal")
-
+    
+    #medium-touch
     elif (risk == 2):
         if (score<15):
             return ("No notification")
@@ -28,7 +29,8 @@ def get_trigger(risk, score):
             return ("Notification for the family and for the doctor, in the Remotely Close portal")
         else:
             return ("Notification for the family and for the doctor, in the EHR portal")
-
+    
+    #high-risk
     else:
         if (score<13):
             return ("No notification")
@@ -42,6 +44,19 @@ def get_trigger(risk, score):
 
 
 def get_exercise(minutes):
+    
+    """
+    This function returns the score related to minutes of exercise. The higher the score, the higher the risk.
+    
+    Parameters:
+    minutes: minutes of exercise, per day, sent by the Remotely Close platform
+    
+    Score matrix:
+        exerc >= 30 : -1
+        15 < exerc < 30 : 0
+        7 < exerc =< 15 : +1
+        0 < exerc =< 7 : +8
+    """
 
     exerc_score = 0
     for minute in minutes:
@@ -60,7 +75,19 @@ def get_exercise(minutes):
 
 
 def get_progress(grades):
-
+    """
+    This function returns the score of the perceived progress of recovery.
+    The threshold of classes is based on the Global Rating of Change.
+    
+    Parameter:
+        grades: list of grades of perceived progress by the patient, sent by the Remotely Close platform
+    
+    Score matrix:
+        score >=3 : -1
+        -3 < score < 3 : 0
+        score <= -3 : +1
+    """
+    
     prog_score = 0
     for grade in grades:
         if grade >= 3:
@@ -71,11 +98,22 @@ def get_progress(grades):
     return (prog_score)
 
 def get_comm(normal, minutes):
+    
+    """
+    This function returns the score related to time spent with communication with the family, comparing with the average. The higher the score, the higher the risk.
+    Parameters:
+        normal - average minutes per day spent with communication
+        minutes - minutes spent each day with communication
+
+    Score matrix:
+        ratio >= 1.5 : -1
+        1.5 < ratio =< 0.1: 0
+        0 < ratio < 0.1 : +1
+
+     """
 
     comm_score = 0
-    
-    #if normal == 0:
-     #  normal = 1
+   
 
     for minute in minutes:
 
@@ -91,7 +129,22 @@ def get_comm(normal, minutes):
 
 
 def get_med(importance, compliance):
+    """
+    This module returns the score related to medication compliance. The higher the score, the higher the risk.
+    Parameters:
+        importance - 1 for drugs with high importance, 0 for drugs with low importance
+        compliance - 1 for dose of medicine taken, 0 not taken
 
+    Score matrix:
+
+        High importance
+        1 : 0
+        0:  10
+
+        Medium - low importance
+        1 : 0
+        0: 3
+    """
     med_score = 0
 
     if importance == 0:
@@ -105,9 +158,3 @@ def get_med(importance, compliance):
 
 
     return (med_score)
-
-
-
-
-
-
