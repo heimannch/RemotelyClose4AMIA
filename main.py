@@ -1,6 +1,7 @@
 """
+RemotelyClose for TKA outcomes
 
-
+This module contains the main functions to process and return notifications in the Remotely Close platform.
 """
 
 #!/usr/bin/env python
@@ -8,6 +9,14 @@
 
 def get_trigger(risk, score):
 
+    """
+    This function returns the trigger to be send, given the risk group and risk score of the patient.
+    
+    Parameters:
+    risk: risk of complications for post-operative, as described by Hoekstra (2016) and available at Appendix E at the Supplementary Materials.
+    score: cumulative risk score for the patient
+   
+    """
     #low-touch
     if (risk == 1):
         if (score<20):
