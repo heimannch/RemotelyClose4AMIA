@@ -1,5 +1,5 @@
 # RemotelyClose4AMIA
-Code for the solution submitted to AMIA Student Challenge 2018
+Code for the solution submitted to AMIA Student Challenge 2018.
 
 You can access a working version of this code at: http://remotelyclose.hopto.org:42042/forms/
 
