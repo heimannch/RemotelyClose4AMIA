@@ -1,9 +1,9 @@
 # RemotelyClose4AMIA
 Code for the solution submitted to AMIA Student Challenge 2018.
 
-You can access a working version of this code at: http://remotelyclose.hopto.org:42042/forms/
+You can access the working version of this code at: http://remotelyclose.hopto.org:42042/forms/
 
-Most of the files in this repository are required to website that runs in Django.
+This website runs in Django, and this repository contains all the files required by this platform, although only two of them matter for the purposes of our project.
 
 The code developed for this project is available at the following files: 
 - main.py: this module contains all the functions to process the input received from the Remotely Close platform
